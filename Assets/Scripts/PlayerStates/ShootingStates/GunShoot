@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Cinemachine;
+public class GunAim : PlayerBaseState
+{
+    private CinemachineVirtualCamera virtualCamera;
+    public override void EnterState(ThirdPersonMovement player)
+    {
+        Debug.Log("Enter Gun aim");
+        virtualCamera = GameObject.FindGameObjectWithTag("Aimtag").GetComponent<CinemachineVirtualCamera>();
+        player.aimCamera.enabled = true;
+        player.rdPerson.enabled = false;
+        virtualCamera.Priority += 10; 
+        
+        player.playerAnimator.SetBool("RifleAim" , true);
+    }
+    public override void Update(ThirdPersonMovement player)
+    {
+        // player.Gun.transform.LookAt(Input.mousePosition , player.Gun.transform.up);
+        if( Input.GetMouseButtonUp(1)){
+            Debug.Log("test");
+            ExitState(player);
+            player.TransitionToState(player.gunIdle); 
+            
+        }
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal , 0f, vertical).normalized;
+        if( direction.magnitude >= 0.1f ){
+            player.playerAnimator.SetBool("RifleAimWalk" , true); 
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + player.cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y , targetAngle , ref player.smoothVelocity , player.smoothTime);
+            player.transform.rotation = Quaternion.Euler(0f , angle , 0f);
+            Vector3 moveDir = Quaternion.Euler(0f , targetAngle , 0f) * Vector3.forward ;
+            // if(Input.GetKey(KeyCode.LeftShift)){
+            //     player.TransitionToState(player.run);
+            // }
+                player.controller.Move(moveDir.normalized * player.speed * Time.deltaTime);
+        }
+        else{
+            player.playerAnimator.SetBool("RifleAimWalk" , false);
+        }
+        if( Input.GetMouseButtonUp(1)){
+    }
+    public override void ExitState(ThirdPersonMovement player)
+    {   
+        Debug.Log(" exiting gun aim");
+        player.playerAnimator.SetBool("RifleAim" , false); 
+        virtualCamera.Priority -= 10;
+        player.aimCamera.enabled = false;
+        player.rdPerson.enabled = true;
+    }
+}
