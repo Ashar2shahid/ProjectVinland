@@ -28,7 +28,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("CentreMap");
     }
 
 }
