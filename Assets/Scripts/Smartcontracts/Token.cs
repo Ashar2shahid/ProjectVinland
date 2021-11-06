@@ -4,8 +4,8 @@ using UnityEngine;
 //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 //gituhb waala code
 public class Token : MonoBehaviour
 {
-    public string chain = "polygon";
-    public string network = "mainnet";
+    public string chain = "ethereum";
+    public string network = "ropsten";
     public string account = "";
 
     // Start is called before the first frame update
@@ -35,8 +35,8 @@ public class Token : MonoBehaviour
     // return balance;
     }
     public string GetAccount(){
-        account = PlayerPrefs.GetString("Account");
-        // account = "0x4d67aA3D291a17538888D1BdB47aA6D12C52cc71";
+        // account = PlayerPrefs.GetString("Account");
+        account = "0x4d67aA3D291a17538888D1BdB47aA6D12C52cc71";
         print(account);
         return account;
         // return account;
