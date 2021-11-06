@@ -39,8 +39,15 @@ public class GunAim : PlayerBaseState
         player.playerAnimator.SetFloat(player.moveXAnimation , horizontal );
         player.playerAnimator.SetFloat(player.moveZAnimation , vertical );
         //shooting
-        if( Input.GetMouseButtonUp(0)){
-            gunScript.Shoot();
+        if( Input.GetMouseButtonDown(0)){
+            gunScript.StartFire();
+        }
+        if( gunScript.isFiring){
+            gunScript.UpdateFire(Time.deltaTime);
+        }
+        gunScript.UpdateBullets(Time.deltaTime);
+        if( Input.GetMouseButtonUp(0) ){
+            gunScript.StopShoot();
         }
         //rotate
         // if( (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0)){
