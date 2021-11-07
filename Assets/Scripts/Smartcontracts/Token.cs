@@ -35,8 +35,8 @@ public class Token : MonoBehaviour
     // return balance;
     }
     public string GetAccount(){
-        // account = PlayerPrefs.GetString("Account");
-        account = "0x4d67aA3D291a17538888D1BdB47aA6D12C52cc71";
+        account = PlayerPrefs.GetString("Account");
+        // account = "0x4d67aA3D291a17538888D1BdB47aA6D12C52cc71";
         print(account);
         return account;
         // return account;

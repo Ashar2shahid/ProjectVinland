@@ -83,12 +83,8 @@ public class UIHandlerUni : MonoBehaviour
         // address of contract || token address
         string contract = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
         
-        Tuple< string , string , int , string , long , string ,ulong ,Tuple<int> > exactInputSingleParams = new Tuple< string , string , int , string , long , string ,ulong ,Tuple<int>  >(SwapFromName, SwapToName, 3000 , token.account , (DateTimeOffset.Now.ToUnixTimeSeconds() + 10000L) , SwapFromInput , 10000000000000000000 , new Tuple<int>(0));
-        // exactInputSingle
-        // 0
-        // params (tuple)
-        // ["0xc778417e063141139fce010982780140aa0cd5ab", "0xaD6D458402F60fD3Bd25163575031ACDce07538D", "3000", "0x9333576376701Bb6D5412DB6D068eFF6E0e310Fd", "1634739000", "2203802811508416", "0", "0"]
-        string args = $"[ \"{exactInputSingleParams}\"]";
+        string args = $"[\"{SwapFromName}\", \"{SwapToName}\" , \"{3000}\",\"{token.account}\" , \"{(DateTimeOffset.Now.ToUnixTimeSeconds() + 10000L)}\" , \"{SwapFromInput}\",\"{0}\",\"{0}\" ]";
+        string args2 = $"[{args}]";
         Debug.Log(args);
         // connects to user's browser wallet to call a transaction
         string value = "0";
@@ -96,8 +92,7 @@ public class UIHandlerUni : MonoBehaviour
         string gas = "21000";
         // connects to user's browser wallet (metamask) to send a transaction
         try {
-        
-        string response = await Web3GL.SendContract(method, abi, contract, args, value);
+        string response = await Web3GL.SendContract(method, abi, contract, args2, value);
         Debug.Log(response); 
         } catch (Exception e) {
         Debug.LogException(e, this);
