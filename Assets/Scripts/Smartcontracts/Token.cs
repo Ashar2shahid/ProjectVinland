@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//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 //gituhb waala code
+
 public class Token : MonoBehaviour
 {
     public string chain = "ethereum";
