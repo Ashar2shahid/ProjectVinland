@@ -12,7 +12,7 @@ public class GunAim : PlayerBaseState
     public override void EnterState(ThirdPersonMovement player)
     {    
         Debug.Log("Enter Gun aim");
-        virtualCamera = player.transform.parent.FindChild("AimCinemachine").GetComponent<CinemachineVirtualCamera>();
+        virtualCamera = player.transform.parent.Find("AimCinemachine").GetComponent<CinemachineVirtualCamera>();
         Debug.Log(virtualCamera);
         player.aimCamera.enabled = true;
         player.rdPerson.enabled = false;

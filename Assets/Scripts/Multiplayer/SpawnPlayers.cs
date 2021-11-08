@@ -20,9 +20,9 @@ public class SpawnPlayers : MonoBehaviour
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
         GameObject myPlayer =  (GameObject)PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        myPlayer.transform.FindChild("Main Camera").gameObject.SetActive(true);
-        myPlayer.transform.FindChild("3rdPersonCamera").gameObject.SetActive(true);
-        myPlayer.transform.FindChild("AimCinemachine").gameObject.SetActive(true);
+        myPlayer.transform.Find("Main Camera").gameObject.SetActive(true);
+        myPlayer.transform.Find("3rdPersonCamera").gameObject.SetActive(true);
+        myPlayer.transform.Find("AimCinemachine").gameObject.SetActive(true);
 
     }
 
