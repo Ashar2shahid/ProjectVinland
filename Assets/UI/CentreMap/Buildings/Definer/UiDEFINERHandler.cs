@@ -114,7 +114,7 @@ public class UiDEFINERHandler : MonoBehaviour
         Debug.Log("Deposit amount" + DepositAmount);
     }
     
-    async public void ReadDepositFromInput(string s){
+    public void ReadDepositFromInput(string s){
         DepositAddress = s;
         Debug.Log("Deposit Input" + DepositAddress);
         // UIValueHandler();
@@ -192,7 +192,7 @@ public class UiDEFINERHandler : MonoBehaviour
 
         Debug.Log(AssetAmount2);
 
-        string args = $"[\"{AssetAddress}\", \"{AssetAmount2}\"]";
+        string args = $"[ \"0\",\"{AssetAddress}\", \"{AssetAmount}\"]";
         
         Debug.Log(args);
         // connects to user's browser wallet to call a transaction
