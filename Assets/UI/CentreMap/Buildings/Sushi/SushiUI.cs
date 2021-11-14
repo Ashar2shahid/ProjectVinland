@@ -6,7 +6,8 @@ using Michsky.UI.ModernUIPack;
 
 public class SushiUI : MonoBehaviour
 {       
-    public ModalWindowManager sushiUIModalWindow; 
+    public ModalWindowManager sushiUIModalWindow;
+    public ContractCallInterface contractCallInterface;
 
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
@@ -15,6 +16,7 @@ public class SushiUI : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         sushiUIModalWindow.OpenWindow();
+        Debug.Log(contractCallInterface.convertArgsToString());
     }
     void OnTriggerExit(Collider other) {
         sushiUIModalWindow.CloseWindow();
