@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_WEBGL
 public class GunNFTMinter : MonoBehaviour
 {
     private Token token = new Token();
-    public MintGunNFT(){
+    public void MintGunNFT(){
         MintGunNFTCall();
     }
     async public void MintGunNFTCall()
@@ -32,4 +31,3 @@ public class GunNFTMinter : MonoBehaviour
         }
     }
 }
-#endif
