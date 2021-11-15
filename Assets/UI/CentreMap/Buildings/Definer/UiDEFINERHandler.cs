@@ -40,6 +40,8 @@ public class UiDEFINERHandler : MonoBehaviour
     private Token token = new Token();
     string contract;
     string abi;
+    public GameObject ApproveButton;
+    public GameObject SwapButton;
     Dictionary<string, float> LTVs;
     IDictionary<string, string>  addressesToAssets;
     IDictionary<string, string>  addressesToIAssets;
@@ -112,11 +114,21 @@ public class UiDEFINERHandler : MonoBehaviour
     public void ReadDepositAmountFromInput(string s){
         DepositAmount = s;
         Debug.Log("Deposit amount" + DepositAmount);
+        
     }
     
-    public void ReadDepositFromInput(string s){
+    async public void ReadDepositFromInput(string s){
         DepositAddress = s;
         Debug.Log("Deposit Input" + DepositAddress);
+        BigInteger allowance = await ERC20.Allowance(token.chain, token.network, DepositAddress, token.account,contract,token.RPC);
+        Debug.Log("allowance" + allowance);
+        if(allowance == 0){
+            ApproveButton.SetActive(true);
+            SwapButton.SetActive(false);
+        }else{
+            ApproveButton.SetActive(false);
+            SwapButton.SetActive(true);
+        }
         // UIValueHandler();
         // BigInteger balanceOf = await ERC20.BalanceOf(token.chain, token.network, DepositAddress , token.account);
         // BigInteger balanceOfWithdraw = await ERC20.BalanceOf(token.chain, token.network, addressesToIaddresses[DepositAddress] , token.account);
@@ -289,7 +301,35 @@ public class UiDEFINERHandler : MonoBehaviour
             DefinerUI.SetActive(true);
         }
     }
+    public void Approve(){
+        BigInteger value = BigInteger.Pow(10, 30);
+        Debug.Log( "contract " + contract +"value " + value  );
+        ApproveCall(contract, value);  
+    }
+    async public void ApproveCall(string spenderContract,BigInteger limitValue){
+        // insert swap function
+        string method = "approve";
+        string abi = ERC20.abi;
+        // address of contract || token address
+        string contract = SwapFromName;
+        string args = $"[\"{spenderContract}\" , \"{limitValue}\"]";
+        Debug.Log(args);
+        // connects to user's browser wallet to call a transaction
+        string value = "0";
+        // gas limit OPTIONAL
+        string gas = "21000";
+        // connects to user's browser wallet (metamask) to send a transaction
+        try {
+        string response = await Web3GL.SendContract(method, abi, contract, args, value);
+        ApproveButton.SetActive(false);
+        SwapButton.SetActive(true);
+        Debug.Log(response); 
+        } catch (Exception e) {
+        Debug.LogException(e, this);
+        };
+    }
 }
+
 //
 //                
 //
