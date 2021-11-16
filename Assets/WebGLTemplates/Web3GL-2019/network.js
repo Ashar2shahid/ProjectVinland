@@ -14,7 +14,9 @@ Used to set the network
 80001 Matic Testnet
 43113 Avalanche Testnet
 43114 Avalanche Mainnet
+66 OKEX mainnet
+128 HECO mainnet
 */
 
-window.web3NetworkId = 66;
-window.web3NetworkName = "OKExChain Mainnet"
+window.web3NetworkId = 128;
+window.web3NetworkName = "HECO mainnet"

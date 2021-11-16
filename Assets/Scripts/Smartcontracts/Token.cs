@@ -5,10 +5,10 @@ using System.Numerics;
 
 public class Token : MonoBehaviour
 {
-    public string chain = "OKEx";
+    public string chain = "HECO";
     public string network = "mainnet";
     public string account = "";
-    public string RPC = "https://exchainrpc.okex.org";
+    public string RPC = "https://http-mainnet.hecochain.com";
 
     // Start is called before the first frame update
     void Start()
