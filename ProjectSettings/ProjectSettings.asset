@@ -677,8 +677,8 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 0
-    Collab: 0
+    Build: 1
+    Collab: 1
     ErrorHub: 0
     Hub: 0
     UNet: 1
@@ -694,7 +694,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 1efa22d5-4615-4c70-87c1-417a3f776416
+  cloudProjectId: 6889aab8-6ded-4118-8186-db9e201fd4db
   framebufferDepthMemorylessMode: 0
   projectName: 3rd person shooter
   organizationId: peternandun47
