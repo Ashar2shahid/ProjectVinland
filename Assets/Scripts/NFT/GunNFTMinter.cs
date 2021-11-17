@@ -6,14 +6,16 @@ using UnityEngine;
 public class GunNFTMinter : MonoBehaviour
 {
     public GameObject GunUI;
+    private Token token = new Token();
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.U)){
             ToggleGunUI();
         }
     }
-    private Token token = new Token();
+   
     public void MintGunNFT(){
+        token.account = token.GetAccount();
         MintGunNFTCall();
     }
     async public void MintGunNFTCall()
@@ -25,6 +27,7 @@ public class GunNFTMinter : MonoBehaviour
         string contract = "0x258470c252A5bb2e276975Fd015Fa53e236acF1D";
         // array of arguments for contract
         string args = $"[\"{token.account}\"]";
+        Debug.Log(args);
         // value in wei
         string value = "0";
         // connects to user's browser wallet (metamask) to send a transaction
