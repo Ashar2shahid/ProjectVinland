@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: d3ed8761924b4674299a56a93a20f8e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CentreMap.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/PureNature/Scenes/Scene_Demo/Scene_Demo.unity
+    guid: d57973a1bebdd054cbe0a992d93ba9b1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 84519427a5bf3e54e93e2af26127b7fa,
       type: 2}
