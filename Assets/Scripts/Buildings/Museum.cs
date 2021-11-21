@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 public class Museum : MonoBehaviour
 {
-
+    public string url;
     bool loaded = false;
 
     private async void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class Museum : MonoBehaviour
             Debug.Log(nftPanels[0]);
             Debug.Log(nftPanels[1]);
             Debug.Log(nftPanels.Length);
-            StartCoroutine(InitialLoad("https://api.nftport.xyz/v0/nfts/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB?chain=ethereum&page_number=1&include=metadata",  async
+            StartCoroutine(InitialLoad(url,  async
                 (UnityWebRequest req) =>
             {
                 if (req.isNetworkError || req.isHttpError)
