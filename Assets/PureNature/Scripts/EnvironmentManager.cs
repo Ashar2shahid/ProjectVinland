@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net;
+using System;
+using System.IO;
+using UnityEngine.Networking;
 
 [ExecuteInEditMode]
 public class EnvironmentManager : MonoBehaviour
@@ -37,6 +41,30 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Debug")]
     public bool showWind;
 
+    IEnumerator updateWeather()
+    {
+        yield return new WaitForSeconds(10.0f);
+
+        using (UnityWebRequest req = UnityWebRequest.Get(String.Format("https://api.covalenthq.com/v1/pricing/volatility/?quote-currency=USD&format=JSON&tickers=ETH&key=ckey_docs")))
+        {
+            yield return req.SendWebRequest();
+            while (!req.isDone)
+                yield return null;
+            byte[] result = req.downloadHandler.data;
+            Debug.Log(result, "this is the result from APIs");
+            string weatherJSON = System.Text.Encoding.Default.GetString(result);
+            Root info = JsonUtility.FromJson<Root>(weatherJSON);
+            Debug.Log(info, "this is the cleaned result from APIs");
+
+            onSuccess(info);
+        }
+
+
+
+    }
+
+
+
     void Update()
     {
         Shader.SetGlobalFloat("WindPower", baseWindPower);
@@ -48,6 +76,8 @@ public class EnvironmentManager : MonoBehaviour
         Shader.SetGlobalFloat("MicroSpeed", microSpeed);
         Shader.SetGlobalFloat("MicroFrequency", microFrequency);
         Shader.SetGlobalFloat("GrassRenderDist", renderDistance);
+
+        updateWeather();
 
         if (showWind == true)
         {
