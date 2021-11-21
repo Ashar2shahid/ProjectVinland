@@ -19,14 +19,17 @@ public class UniUI : MonoBehaviour
     }
     void Update()
     {
+        if(UniUIText.activeSelf ==true){
         if(Input.GetKeyUp(KeyCode.F) ){
            UniUIText.SetActive(false); 
            ToggleUniUI();
         }
+        }
     }
     private void ToggleUniUI(){
         if(UniUI2.activeSelf == true){
-            UniUI2.SetActive(false);  
+            UniUI2.SetActive(false);
+            UniUIText.SetActive(true);   
         }else{
             UniUI2.SetActive(true);
         }

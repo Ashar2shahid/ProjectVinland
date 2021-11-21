@@ -18,5 +18,5 @@ Used to set the network
 128 HECO mainnet
 */
 
-window.web3NetworkId = 128;
-window.web3NetworkName = "HECO mainnet"
+window.web3NetworkId = 137;
+window.web3NetworkName = "Matic"

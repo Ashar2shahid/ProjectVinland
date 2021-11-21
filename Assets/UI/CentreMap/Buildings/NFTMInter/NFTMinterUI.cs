@@ -22,11 +22,11 @@ public class NFTMinterUI : MonoBehaviour
         if(NFTMinterText.activeSelf ==true){
         if(Input.GetKeyUp(KeyCode.F) ){
            NFTMinterText.SetActive(false); 
-           ToggleCherryUI();
+           ToggleNFTMinterUI();
         }
         }
     }
-    private void ToggleCherryUI(){
+    private void ToggleNFTMinterUI(){
         if(NFTMinter.activeSelf == true){
             NFTMinter.SetActive(false);
             NFTMinterText.SetActive(true);   
